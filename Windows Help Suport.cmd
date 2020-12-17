@@ -4,14 +4,14 @@
 cls
 
 rem Created by   : Ichi Sawatari - Tyago
-rem Contact      : tyago.ichi@outlook.co
+rem Contact      : tyago.ichi@outlook.com
 REM
 REM ==================================================================
 REM   Author: Ichi Sawatari
 REM   Discord: Tyago Ichi#3797
 REM   Github: https://github.com/IchiSawatari/Windows-Help-suport
 REM ==================================================================
-REM   last update: 10/06/2020 02:51
+REM   last update: 17/12/2020 20:00
 REM ==================================================================
 REM
 
@@ -48,22 +48,23 @@ REM = LIMPANDO VARIAVEIS =
 	SET ativar_Key=
 
 echo. ===============================================================
-echo   ====================== Menu Principal =======================
+echo.  ====================== Menu Principal =======================
 echo. ===============================================================
-echo  1 - Instalar/Atualizar um aplicativo Appx (windows10)
-echo. 2 - Instalar/Atualizar multiplos aplicativos Appx (windows10)
-echo. 3 - Ver minha serial key
-echo. 4 - Ativar windows por serial key
-echo  5 - ativar windows por KMS server
-echo  6 - Numero de serie Motherboard e BIOS
-echo  7 - Windows Modo Teste
-echo  8 - Rede
-echo  9 - Atualiza para o windows 10 Pro
-echo  10 - Info do PC e S.O
+echo.  1 - Instalar/Atualizar um aplicativo Appx (windows10)
+echo.  2 - Instalar/Atualizar multiplos aplicativos Appx (windows10)
+echo.  3 - Ver minha serial key
+echo.  4 - Ativar windows por serial key
+echo.  5 - ativar windows por KMS server
+echo.  6 - Numero de serie Motherboard e BIOS
+echo.  7 - Windows Modo Teste
+echo.  8 - Rede
+echo.  9 - Atualiza para o windows 10 Pro
+echo.  10 - Remover apps nativos windows 10
+echo.  11 - Info do PC e S.O
 echo.
-echo  A - Creditos
+echo.  A - Creditos
 echo. ===============================================================
-echo  S - SAIR
+echo.  S - SAIR
 echo. ===============================================================
 
 set /p Comando= :: 
@@ -77,6 +78,7 @@ if "%Comando%" equ "7" (goto:op7)
 if "%Comando%" equ "8" (goto:op8)
 if "%Comando%" equ "9" (goto:op9)
 if "%Comando%" equ "10" (goto:op10)
+if "%Comando%" equ "11" (goto:op11)
 
 if "%Comando%" equ "a" (goto:Author)
 if "%Comando%" equ "A" (goto:Author)
@@ -167,6 +169,8 @@ cls
 @title Ativar windows com uma serial key
 echo.=====================================================================
 echo.    1 - Ativar windows pela Serial Key :: 2 - Remover Serial Key
+echo.=====================================================================
+echo. B - Voltar ao menu inicial
 echo.=====================================================================
 	set /p ativar_Key= ::
 	if "%ativar_Key%" equ "1" (goto:key1)
@@ -623,19 +627,23 @@ rem ===== RESET CONFIG REDE ========
 			ipconfig /release6 >nul
 		echo Renovando endereco IP...
 			timeout /t 5 > nul
-			
 			ipconfig /flushdns >nul
 		echo Limpando cache do DNS...
 			timeout /t 5 > nul
 		echo Atualizando DNS...
 			timeout /t 5 > nul 
-			ipconfig /registerdns
+			ipconfig /registerdns >nul
 		echo Reiniciando config de rede ETHERNET e Wi-Fi...
 			timeout /t 5 > nul
 			ipconfig /renew ET* >nul
 			ipconfig /renew Con* >nul
 			ipconfig /renew Wi* >nul
+			ipconfig /renew >nul
 		echo Pronto...
+		echo.
+		echo O windows ira reiniciar para concluir as configuracoes...
+		timeout /t 2 > nul
+			%windir%\system32\shutdown.exe -r -t 0
 pause
 cls
 	echo Retornando ao menu inicial...
@@ -680,8 +688,179 @@ echo Retornando ao menu inicial...
 timeout /t 5 > nul
 goto:inicio
 
-rem == informação sobre o pc ==
+rem == Remover apps metro ==
 :op10
+cls
+	SET Comando=
+	SET ComandoAPP=
+	echo.
+	echo. ===========================================================
+	echo. = A - Remover apps especificos ex: XBOX, pessoa, grove...
+	echo. = B - Remover todos os apps metro, INCLUI WINDOWS STORE.
+	echo. = C - Remover tudo menos windows store e packege manage. 
+	echo. ===========================================================
+	set /p Digite uma opcao::
+	if "%ComandoAPP%" equ "A" (goto:appA)
+	if "%ComandoAPP%" equ "B" (goto:appB)
+	if "%ComandoAPP%" equ "C" (goto:appC)
+:appA
+powershell -command "Get-AppxPackage *Microsoft.3dbuilder* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft3DViewer* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *AdobeSystemsIncorporated.AdobePhotoshopExpress* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Appconnector* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Asphalt8Airborne* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *king.com.CandyCrushSodaSaga* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.DrawboardPDF* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Facebook* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxGameOverlay* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsMaps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Messaging* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Beta* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Canary* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdgeDevToolsClient* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.BingNews* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *CommsPhone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *windowsphone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *OneNote* | Remove-AppxPackage"
+goto:inicio
+:appB
+powershell -command "Get-AppxPackage *Microsoft.WindowsStore* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Whiteboard* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *ConnectivityStore* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *MinecraftUWP* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.OneConnect* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Netflix* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsNotepad* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *OneNote* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MSPaint* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *PandoraMediaInc* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.People* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Windows.Photos* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Print3D* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.RemoteDesktop* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *WindowsScan* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *AutodeskSketchBook* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.SkypeApp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ScreenSketch* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *bingsports* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Office.Sway* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Twitter* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft3DViewer* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsSoundRecorder* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.BingWeather* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxApp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *XboxOneSmartGlass* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.3dbuilder* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft3DViewer* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *AdobeSystemsIncorporated.AdobePhotoshopExpress* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Appconnector* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Asphalt8Airborne* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *king.com.CandyCrushSodaSaga* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.DrawboardPDF* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Facebook* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxGameOverlay* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsMaps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Messaging* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Beta* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Canary* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdgeDevToolsClient* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.BingNews* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *CommsPhone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *windowsphone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage"
+goto:inicio
+:appC
+powershell -command "Get-AppxPackage *Microsoft.Whiteboard* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *ConnectivityStore* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *MinecraftUWP* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.OneConnect* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Netflix* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsNotepad* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *OneNote* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MSPaint* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *PandoraMediaInc* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.People* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Windows.Photos* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Print3D* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.RemoteDesktop* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *WindowsScan* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *AutodeskSketchBook* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.SkypeApp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ScreenSketch* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *bingsports* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Office.Sway* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Twitter* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft3DViewer* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsSoundRecorder* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.BingWeather* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxApp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *XboxOneSmartGlass* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.3dbuilder* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft3DViewer* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *AdobeSystemsIncorporated.AdobePhotoshopExpress* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Appconnector* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Asphalt8Airborne* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *king.com.CandyCrushSodaSaga* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.DrawboardPDF* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Facebook* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.XboxGameOverlay* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.WindowsMaps* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.Messaging* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Beta* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Canary* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdgeDevToolsClient* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.BingNews* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *CommsPhone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *windowsphone* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage"
+goto:inicio
+:app0
+:appS
+goto:inicio
+rem == informação sobre o pc ==
+:op11
 	cls
 	echo.
 		systeminfo
@@ -705,7 +884,7 @@ cls
 	echo.   Discord: Tyago Ichi#3797
 	echo.   Github: https://github.com/IchiSawatari/Windows-Help-suport
 	echo. ==================================================================
-	echo.   last update: 10/06/2020 02:51
+	echo.   last update: 17/12/2020 20:00
 	echo. ==================================================================
 	echo.
 
