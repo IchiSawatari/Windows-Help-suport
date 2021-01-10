@@ -6,7 +6,7 @@ REM   Author: Ichi Sawatari
 REM   Discord: Tyago Ichi#3797
 REM   Github: https://github.com/IchiSawatari/Windows-Help-suport
 REM ==================================================================
-REM   last update: 17/12/2020 20:00
+REM   last update: 10/01/2020 16:00
 REM ==================================================================
 @echo off
 CLS
@@ -1182,7 +1182,7 @@ cls
 	echo.   Discord: Tyago Ichi#3797
 	echo.   Github: https://github.com/IchiSawatari/Windows-Help-suport
 	echo. ==================================================================
-	echo.   last update: 17/12/2020 20:00
+	echo.   last update: 10/01/2020 16:00
 	echo. ==================================================================
 	echo.
 
