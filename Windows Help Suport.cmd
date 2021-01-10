@@ -31,10 +31,6 @@ if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
 
 :getPrivileges
 if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
-ECHO.
-ECHO **************************************
-ECHO Invoking UAC for Privilege Escalation
-ECHO **************************************
 
 ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
 ECHO args = "ELEV " >> "%vbsGetPrivileges%"
