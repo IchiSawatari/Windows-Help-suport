@@ -1,4 +1,3 @@
-rem Created by   : Ichi Sawatari - Tyago
 rem Contact      : tyago.ichi@outlook.com
 REM
 REM ==================================================================
