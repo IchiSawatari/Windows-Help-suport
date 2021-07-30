@@ -1,19 +1,13 @@
-rem Contact      : tyago.ichi@outlook.com
-REM
 REM ==================================================================
 REM   Author: Ichi Sawatari
 REM   Discord: Tyago Ichi#3797
 REM   Github: https://github.com/IchiSawatari/Windows-Help-suport
 REM ==================================================================
-REM   last update: 21/03/2021
+REM   last update: 22/05/2021
 REM ==================================================================
 @echo off
 CLS
-ECHO.
-ECHO =====================================
-ECHO   https://github.com/ichiSawatari
-ECHO =====================================
-ECHO.
+mode con:cols=68 lines=22
 
 :init
 setlocal DisableDelayedExpansion
@@ -55,7 +49,7 @@ setlocal & cd /d %~dp0
 if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
 @echo off
-@title Windows Help Suporte :3
+@title Suporte v1.0
 cls
 
 chcp 437 >nul
@@ -63,8 +57,9 @@ cd /d "%~dp0"
 setlocal EnableDelayedExpansion
 
 :inicio
-@title Windows Help Suporte :3
+@title Suporte v1.0
 color 0f
+mode con:cols=68 lines=22
 cls
 REM = LIMPANDO VARIAVEIS =
 	SET Comando=
@@ -102,17 +97,18 @@ echo. == 4 - Ativar windows por serial key                            ==
 echo. == 5 - ativar windows por KMS server                            ==
 echo. == 6 - Numero de serie Motherboard e BIOS                       ==
 echo. == 7 - Windows Modo Teste                                       ==
-echo. == 8 - Rede                                                     ==
+echo. == 8 - Servicos de Rede                                         ==
 echo. == 9 - Atualiza para o windows 10 Pro                           ==
 echo. == 10 - Remover apps nativos windows 10                         ==
 echo. == 11 - Reparar problemas HDD / ARQUIVOS                        ==
-echo. == 12 - Iniciar/Parar impressora servico                        ==
+echo. == 12 - Servico de Impressora Windows                           ==
 echo. == 13 - Info do PC e S.O                                        ==
 echo. == 14 - Remover arquivos temporarias de updates e navegadores.  ==
+echo. == 15 - EM DESENVOLVIMENTO                                      ==
 echo. ==================================================================
-echo. == A - Creditos  =================================================
+echo. == A - Creditos                                                 ==
 echo. ==================================================================
-echo. == S - SAIR  =====================================================
+echo. == S - SAIR                                                     ==
 echo. ==================================================================
 
 set /p Comando= :: 
@@ -130,6 +126,7 @@ if "%Comando%" equ "11" (goto:op11)
 if "%Comando%" equ "12" (goto:op12)
 if "%Comando%" equ "13" (goto:op13)
 if "%Comando%" equ "14" (goto:op14) 
+if "%Comando%" equ "15" (goto:op15) 
 
 if "%Comando%" equ "a" (goto:Author)
 if "%Comando%" equ "A" (goto:Author)
@@ -147,6 +144,7 @@ if "%Comando%" GEQ "AA" (goto:erro404)
 rem = ERRO NOT FOUND ===========================================================
 :erro404
 cls
+mode con:cols=71 lines=10
 color 03
 echo ========================================================================
 echo            * Opcao Invalida! Escolha outra opcao do menu *
@@ -222,6 +220,7 @@ goto:inicio
 rem == Ativacao windows por serial key ==
 :op4
 cls
+mode con:cols=70 lines=26
 @title Ativar windows com uma serial key
 echo.=====================================================================
 echo.    1 - Ativar windows pela Serial Key :: 2 - Remover Serial Key
@@ -263,6 +262,7 @@ goto:inicio
 rem == Ativacao windows por KMS ==
 :op5
 cls
+mode con:cols=87 lines=22
 @title Ativar windows por KMS
 	echo.
 	echo. === SERIAL KEY =======================================================================
@@ -314,7 +314,7 @@ rem == Entra no modo de testes do windows ==
 @title  Windows Mode Test
 @echo off
 cls
-
+mode con:cols=80 lines=10
 REM = LIMPANDO VARIAVEIS =
 	SET TesteMode=
 	SET Comando=
@@ -338,6 +338,7 @@ echo ===========================================================================
 	rem = ERRO NOT FOUND ===========================================================
 	:erro404
 	cls
+	mode con:cols=71 lines=10
 	echo ========================================================================
 	echo            * Opcao Invalida! Escolha outra opcao do menu *
 	echo ========================================================================
@@ -433,6 +434,7 @@ if "%ComandoREDE%" GEQ "AA" (goto:erro404)
 rem = ERRO NOT FOUND ===========================================================
 :erro404
 cls
+mode con:cols=71 lines=10
 color 03
 echo ========================================================================
 echo            * Opcao Invalida! Escolha outra opcao do menu *
@@ -763,167 +765,177 @@ goto:inicio
 rem == Remover apps metro ==
 :op10
 cls
-	SET Comando=
-	SET NOTEBOOK=
-	SET opc=
-@echo off
-@title Run clear windows apps v1.0
-echo. %time% %OS% 
-echo. %userprofile%
-ECHO.
-SET /p NOTEBOOK= Deseja remover apps nativos(S) ou Reinstalar(R)?
-if "%NOTEBOOK%" equ "S" (goto:Desktop)
-if "%NOTEBOOK%" equ "Sim" (goto:Desktop)
-if "%NOTEBOOK%" equ "s" (goto:Desktop)
-if "%NOTEBOOK%" equ "sim" (goto:Desktop)
-if "%NOTEBOOK%" equ "R" (goto:Reinstall)
-if "%NOTEBOOK%" equ "Rein" (goto:Reinstall)
-if "%NOTEBOOK%" equ "r" (goto:Reinstall)
-if "%NOTEBOOK%" equ "rein" (goto:Reinstall)
+:inicioRemoveApps
+color 0f
+mode con:cols=68 lines=22
+@title Windows Remove APPS v2.0
 
-:Desktop
+SET OPCREMOCAO= 
+
 cls
+
 ECHO.
-ECHO =====================================
-ECHO.
-ECHO           Windows Clean Apps
-ECHO.
-ECHO   https://github.com/ichiSawatari
-ECHO =====================================
-ECHO.
-echo. %time% %OS% 
-echo. %userprofile%
-ECHO.
-@title Run clear windows Desktop v1.6
+echo. ==================================================================
+echo. ====================== Windows Remove APPS ======================= 
+echo. ==================================================================
+echo. == A - Remover Cortana                                          ==
+echo. == B - Remover Xbox                                             ==
+echo. == C - Remover Microsoft Windows 10 Extensions                  ==
+echo. == D - Remover Apps Microsoft, Noticia, Clima, Economia...      ==
+echo. == E - Remover Loja Windows e Wallet                            ==
+echo. == F - Remover ConectivyStore, conexao microsoft Store....      ==
+echo. == G - Remover Microsoft Fotos, Musicas, Videos                 ==
+echo. ==       Restaurando visualizador de fotos classico do windows  ==
+echo. == H - Aplica Remocoes no registro para permanente              ==
+echo. == I - Remover todos os APPS, mantendo Fotos e calculadora...   ==
+echo. ==       Aplicando nos registro                                 ==
+echo. == J - Reinstalar apps removidos                                ==
+echo. ==================================================================
+echo. == S - Voltar ao menu inicial                                   ==
+echo. ==================================================================
+SET /p OPCREMOCAO= ::
+
+if "%OPCREMOCAO%" equ "a" (goto:rCortana)
+if "%OPCREMOCAO%" equ "b" (goto:rXbox)
+if "%OPCREMOCAO%" equ "c" (goto:rExtensions)
+if "%OPCREMOCAO%" equ "d" (goto:rbMicrosoft)
+if "%OPCREMOCAO%" equ "e" (goto:rStore)
+if "%OPCREMOCAO%" equ "f" (goto:rConectStore)
+if "%OPCREMOCAO%" equ "g" (goto:rBasicApps)
+if "%OPCREMOCAO%" equ "h" (goto:aRegistro)
+if "%OPCREMOCAO%" equ "i" (goto:rTodosApps)
+if "%OPCREMOCAO%" equ "j" (goto:reReinstall)
+
+if "%OPCREMOCAO%" equ "A" (goto:rCortana)
+if "%OPCREMOCAO%" equ "B" (goto:rXbox)
+if "%OPCREMOCAO%" equ "C" (goto:rExtensions)
+if "%OPCREMOCAO%" equ "D" (goto:rbMicrosoft)
+if "%OPCREMOCAO%" equ "E" (goto:rStore)
+if "%OPCREMOCAO%" equ "F" (goto:rConectStore)
+if "%OPCREMOCAO%" equ "G" (goto:rBasicApps)
+if "%OPCREMOCAO%" equ "H" (goto:aRegistro)
+if "%OPCREMOCAO%" equ "I" (goto:rTodosApps)
+if "%OPCREMOCAO%" equ "J" (goto:reReinstall)
+
+if "%OPCREMOCAO%" equ "s" (goto:backInicio)
+if "%OPCREMOCAO%" equ "S" (goto:backInicio)
+if "%OPCREMOCAO%" equ "sair" (goto:backInicio)
+if "%OPCREMOCAO%" equ "Sair" (goto:backInicio)
+
+if "%OPCREMOCAO%" GEQ "00" (goto:erro)
+if "%OPCREMOCAO%" GEQ "aa" (goto:erro)
+if "%OPCREMOCAO%" GEQ "AA" (goto:erro)
+if "%OPCREMOCAO%" GEQ "@" (goto:erro)
+if "%OPCREMOCAO%" GEQ "#" (goto:erro)
+
+:erro
+cls
+mode con:cols=71 lines=10
+color 03
+echo ========================================================================
+echo ==         * Opcao Invalida! Escolha outra opcao do menu *            ==
+echo ========================================================================
+echo.
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rCortana
 pause
-    echo. Tentando remover apps microsoft
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Office.OneNote* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *WindowsScan* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Whiteboard* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *MinecraftUWP* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.OneConnect* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsNotepad* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *OneNote* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MSPaint* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.People* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Print3D* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Paint3D* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MSPaint3D* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Paint3D* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.RemoteDesktop* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.ScreenSketch* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Office.Sway* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft3DViewer* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.3dbuilder* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft3DViewer* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *AdobeSystemsIncorporated.AdobePhotoshopExpress* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsAlarms* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.GetHelp* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsMaps* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Messaging* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *CommsPhone* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *windowsphone* | Remove-AppxPackage"
-	echo. Tentando remover Microsoft Newsletter
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.News* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Newsletter* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftNewsletter* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *Microsoft.news* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *Microsoft.newsletter* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *Microsoft.MicrosoftNewsletter* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage *Newsletter* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage *MicrosoftNewsletter* | Remove-AppxPackage"
-	    powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.NarratorQuickStart* | Remove-AppxPackage"
-    SET opc=
-    set /p opc= Deseja remover Skype ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
+Echo. Removendo Cortana...
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.Cortana* | Remove-AppxPackage"
+	echo. Removendo Cortana.549981C3F5F10
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+	echo. Removendo Windows.Cortana_1.13.0.18362_neutral_neutral
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.Cortana_1.13.0.18362_neutral_neutral_cw5n1h2txyewy* | Remove-AppxPackage"
+	
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rXbox
+pause
+Echo. Removendo Xbox Apps...
+	Echo. XboxOneSmartGlass...
+    powershell -command "Get-AppxPackage -AllUsers *XboxOneSmartGlass* | Remove-AppxPackage"
+    Echo. XboxSpeechToTextOverlay...
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage"
+	Echo. Microsoft.XboxApp...
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxApp* | Remove-AppxPackage"
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay* | Remove-AppxPackage"
+    Echo. XboxGamingOverlay...
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay* | Remove-AppxPackage"
+    Echo. XboxIdentityProvider...
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameCallableUI* | Remove-AppxPackage"
+    Echo. XboxGameCallableUI...
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider_12.58.1001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay_3.34.15002.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay_1.47.14001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameCallableUI_1000.18362.449.0_neutral_neutral_cw5n1h2txyewy* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI_1.24.10001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rExtensions
+pause
+Echo. Remover Microsoft extencoes
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.VCLibs.140.00* | Remove-AppxPackage"
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.VCLibs* | Remove-AppxPackage"
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.VP9VideoExtensions* | Remove-AppxPackage"
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.WebMediaExtensions* | Remove-AppxPackage"
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.WebpImageExtension* | Remove-AppxPackage"
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rbMicrosoft
+pause
+	Echo. Removendo apps Microsoft...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Office.OneNote* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Whiteboard* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *MinecraftUWP* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.OneConnect* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsNotepad* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *OneNote* | Remove-AppxPackage"
+	Echo. People
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.People* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.ScreenSketch* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Office.Sway* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.GetHelp* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsMaps* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Messaging* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *CommsPhone* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *windowsphone* | Remove-AppxPackage"
+	Echo. Removendo MixedReality
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
+	Echo. Removendo Microsoft Solitaire Collection
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+	Echo. Removendo 3DBuilder
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft3DViewer* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.3dbuilder* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft3DViewer* | Remove-AppxPackage"
+	Echo. Removendo Paint3D
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Print3D* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Paint3D* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MSPaint3D* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MSPaint* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Paint3D* | Remove-AppxPackage"
+	Echo. Removendo Skype App
 		powershell -command "Get-AppxPackage -AllUsers *Microsoft.SkypeApp* | Remove-AppxPackage"
-	:op2
-    SET opc=
-    set /p opc= Deseja remover Microsoft Musica ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.ZuneMusic* | Remove-AppxPackage"
-    :op2
-    SET opc=
-    set /p opc= Deseja remover Microsoft Video ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.ZuneVideo* | Remove-AppxPackage"
-    :op2
-    SET opc=
-    set /p opc= Deseja remover Microsoft Camera ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-        powershell -command "Get-AppxPackage -AllUsers *windowscamera* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.windowscamera* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage -AllUsers *WindowsSoundRecorder* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsSoundRecorder* | Remove-AppxPackage"
-    :op2
-    SET opc=
-    echo.
-    echo. Removendo apps de terceiros...
-    SET opc=
-    set /p opc= Deseja remover Netflix ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-        powershell -command "Get-AppxPackage *Netflix* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *netflix* | Remove-AppxPackage"
-    :op2
-    SET opc=
-    set /p opc= Deseja remover Spotify ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-        powershell -command "Get-AppxPackage *Spotify* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *spotify* | Remove-AppxPackage"
-    :op2
-    SET opc=
-        powershell -command "Get-AppxPackage *Facebook* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *Twitter* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *facebook* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *twitter* | Remove-AppxPackage"
-    echo.
-    SET opc=
-    echo. Removendo demais apps de terceiros AutodeskSketchBook...
-        	powershell -command "Get-AppxPackage -AllUsers *AutodeskSketchBook* | Remove-AppxPackage"
-		echo. PandoraMediaInc
-			powershell -command "Get-AppxPackage -AllUsers *PandoraMediaInc* | Remove-AppxPackage"
-		echo. CandyCrushSodaSaga
-        	powershell -command "Get-AppxPackage -AllUsers *king.com.CandyCrushSodaSaga* | Remove-AppxPackage"
-		echo. DrawboardPDF
-        	powershell -command "Get-AppxPackage -AllUsers *Microsoft.DrawboardPDF* | Remove-AppxPackage"
-		echo. Appconnector
-        	powershell -command "Get-AppxPackage -AllUsers *Microsoft.Appconnector* | Remove-AppxPackage"
-		echo. Asphalt8Airborne
-        	powershell -command "Get-AppxPackage -AllUsers *Microsoft.Asphalt8Airborne* | Remove-AppxPackage"
-    echo. Tentando Remover Apps BING...
+    echo. Removendo Apps BING...
         powershell -command "Get-AppxPackage -AllUsers *Microsoft.BingWeather* | Remove-AppxPackage"
         powershell -command "Get-AppxPackage -AllUsers *Microsoft.BingNews* | Remove-AppxPackage"
         powershell -command "Get-AppxPackage -AllUsers *bingsports* | Remove-AppxPackage"
@@ -934,132 +946,180 @@ pause
         powershell -command "Get-AppxPackage -AllUsers *bingnews* | Remove-AppxPackage"
         powershell -command "Get-AppxPackage -AllUsers *bingsports* | Remove-AppxPackage"
         powershell -command "Get-AppxPackage -AllUsers *bingfinance* | Remove-AppxPackage"
-    echo. Tentando Remover microsoft edge...
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftEdge* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Edge* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Edge* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdge.Beta* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftEdge.Canary* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage *Microsoft.MicrosoftEdgeDevToolsClient* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftEdge.Stable* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftEdgeDevToolsClient* | Remove-AppxPackage"
-    echo. Tentando Remover a Cortana...
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.Cortana* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.Cortana_1.13.0.18362_neutral_neutral_cw5n1h2txyewy* | Remove-AppxPackage"
-    echo.
-    pause
-    SET opc=
-    set /p opc= Deseja remover Windows Xbox? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-    @title XBOX Apps
-        echo. Tentando remover XBOX Apps...
-        powershell -command "Get-AppxPackage -AllUsers *XboxOneSmartGlass* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxApp* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameCallableUI* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider_12.58.1001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay_3.34.15002.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay_1.47.14001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameCallableUI_1000.18362.449.0_neutral_neutral_cw5n1h2txyewy* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI_1.24.10001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
-        @title Run clear windows apps v1.6
+	echo. Removendo DrawboardPDF
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.DrawboardPDF* | Remove-AppxPackage"
+	echo. Removendo Appconnector
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Appconnector* | Remove-AppxPackage"
+	echo. Removendo Asphalt8Airborne
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Asphalt8Airborne* | Remove-AppxPackage"
 
-    :op2
-	SET opc=
-    set /p opc= Deseja remover Windows Extensions? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-	:op
-	@title Remover Extensions
-		Echo. Removendo Extensions...
-		powershell -command "Get-AppxPackage -AllUsers *Microsoft.VCLibs.140.00* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage -AllUsers *Microsoft.VCLibs* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage -AllUsers *Microsoft.VP9VideoExtensions* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WebMediaExtensions* | Remove-AppxPackage"
-		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WebpImageExtension* | Remove-AppxPackage"
-		@title Run clear windows apps v1.6
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rStore
+pause
+Echo. Removendo Windows Store...
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsStore* | Remove-AppxPackage"
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.StorePurchaseApp* | Remove-AppxPackage"
+	Echo. Removendo Windows Wallet...
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.Wallet* | Remove-AppxPackage"
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rConectStore
+pause
+Echo. Removendo conexao com a Microsoft Store / Windows Store
+	powershell -command "Get-AppxPackage -AllUsers *ConnectivityStore* | Remove-AppxPackage"
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rBasicApps
+pause
+	Echo. Removendo Microsoft Musica
+    powershell -command "Get-AppxPackage -AllUsers *Microsoft.ZuneMusic* | Remove-AppxPackage"
+	Echo. Removendo Microsoft Video
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.ZuneVideo* | Remove-AppxPackage"
+	Echo. Removendo Microsoft Photos
+	powershell -command "Get-AppxPackage -AllUsers *photos* | Remove-AppxPackage"
+	powershell -command "Get-AppxPackage -AllUsers *Microsoft.Photos* | Remove-AppxPackage"
 	
-	:op2
-    SET opc=
-    set /p opc= Deseja remover Windows Email? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-    @title Remover Windows Email
-        Echo. Remover Windows Email...
-        powershell -command "Get-AppxPackage -AllUsers *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *microsoft.windowscommunicationsapps* | Remove-AppxPackage"
-        @title Run clear windows apps v1.6
-    :op2
+	regedit.exe /s image.reg
 
-    SET opc=
-    set /p opc= Deseja remover a Windows Store? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
 
-    @title Remover Windows Store
-        Echo. remover Windows Store...
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsStore* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.StorePurchaseApp* | Remove-AppxPackage"
-        powershell -command "Get-AppxPackage -AllUsers *Microsoft.Wallet* | Remove-AppxPackage"
-        @title Run clear windows apps v1.6
+:aRegistro
+pause
+echo. Aplicando nos registro do windows
+    powershell -command "Get-AppxProvisionedPackage -Online | Remove-AppxProvisionedPackage -Online"
 
-    :op2
-    SET opc=
-    set /p opc= Deseja Desativa ConnectivityStore ? (Y/N) : 
-    if "%opc%" equ "y" (goto:op)
-    if "%opc%" equ "n" (goto:op2)
-	if "%opc%" equ "Y" (goto:op)
-    if "%opc%" equ "N" (goto:op2)
-    :op
-        powershell -command "Get-AppxPackage -AllUsers *ConnectivityStore* | Remove-AppxPackage"
-    :op2
-	SET opc=
-    @title Run clear windows apps v1.6
-    SET opc=
-    echo. Aplicando nos registro do windows
-        powershell -command "Get-AppxProvisionedPackage -Online | Remove-AppxProvisionedPackage -Online"
-    echo.
-    echo Finalizado!
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:rTodosApps
+pause
+
+	Echo. Removendo apps Microsoft...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Office.OneNote* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Whiteboard* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *MinecraftUWP* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.OneConnect* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsNotepad* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *OneNote* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.People* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.ScreenSketch* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Office.Sway* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.GetHelp* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsMaps* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Messaging* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *CommsPhone* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *windowsphone* | Remove-AppxPackage"
+	Echo. Removendo Cortana...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.Cortana* | Remove-AppxPackage"
+	echo. Removendo Cortana.549981C3F5F10
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
+	echo. Removendo Windows.Cortana_1.13.0.18362_neutral_neutral
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Windows.Cortana_1.13.0.18362_neutral_neutral_cw5n1h2txyewy* | Remove-AppxPackage"
+	Echo. Remote Desktop
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.RemoteDesktop* | Remove-AppxPackage"
+	Echo. Removendo MixedReality
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MixedReality.Portal* | Remove-AppxPackage"
+	Echo. Removendo Microsoft Solitaire Collection
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+	Echo. Removendo 3DBuilder
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft3DViewer* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.3dbuilder* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft3DViewer* | Remove-AppxPackage"
+	Echo. Removendo Paint3D
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Print3D* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Paint3D* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MSPaint3D* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.MSPaint* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Paint3D* | Remove-AppxPackage"
+	Echo. Removendo Skype App
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.SkypeApp* | Remove-AppxPackage"
+	Echo. Removendo Microsoft Musica
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.ZuneMusic* | Remove-AppxPackage"
+	Echo. Removendo Microsoft Video
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.ZuneVideo* | Remove-AppxPackage"
+    echo. Removendo Apps BING...
+        powershell -command "Get-AppxPackage -AllUsers *Microsoft.BingWeather* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *Microsoft.BingNews* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *bingsports* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *bingfinance* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *Microsoft.bingWeather* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *Microsoft.bingnews* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *BingNews* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *bingnews* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *bingsports* | Remove-AppxPackage"
+        powershell -command "Get-AppxPackage -AllUsers *bingfinance* | Remove-AppxPackage"
+	echo. Removendo DrawboardPDF
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.DrawboardPDF* | Remove-AppxPackage"
+	echo. Removendo Appconnector
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Appconnector* | Remove-AppxPackage"
+	echo. Removendo Asphalt8Airborne
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Asphalt8Airborne* | Remove-AppxPackage"
+	Echo. Removendo conexao com a Microsoft Store / Windows Store
+		powershell -command "Get-AppxPackage -AllUsers *ConnectivityStore* | Remove-AppxPackage"
+	Echo. Removendo Windows Store...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.WindowsStore* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.StorePurchaseApp* | Remove-AppxPackage"
+	Echo. Removendo Windows Wallet...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Wallet* | Remove-AppxPackage"
+	Echo. Removendo Xbox Apps...
+	Echo. XboxOneSmartGlass...
+		powershell -command "Get-AppxPackage -AllUsers *XboxOneSmartGlass* | Remove-AppxPackage"
+    Echo. XboxSpeechToTextOverlay...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage"
+	Echo. Microsoft.XboxApp...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxApp* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay* | Remove-AppxPackage"
+    Echo. XboxGamingOverlay...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay* | Remove-AppxPackage"
+    Echo. XboxIdentityProvider...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameCallableUI* | Remove-AppxPackage"
+    Echo. XboxGameCallableUI...
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider_12.58.1001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay_3.34.15002.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay_1.47.14001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxGameCallableUI_1000.18362.449.0_neutral_neutral_cw5n1h2txyewy* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
+		powershell -command "Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI_1.24.10001.0_x64__8wekyb3d8bbwe* | Remove-AppxPackage"
 	
-:Reinstall
-	ECHO.
-	ECHO =====================================
-	ECHO.
-	ECHO           Windows Apps
-	ECHO.
-	ECHO   by : Thiago Erick
-	ECHO   https://github.com/ichiSawatari
-	ECHO =====================================
-	ECHO.
-	    echo. %time% %OS% 
-	    echo. %userprofile%
-	ECHO.
-	    rem powershell -command "Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)AppXManifest.xml”}"
-    echo Finalizado!
-    echo Recomendo reiniciar o windows
-    pause
-    cls
-    echo o computador vai reiniciar
-        %windir%\system32\shutdown.exe -r -t 0
-:appS
+	echo. Aplicando nos registro do windows...
+		powershell -command "Get-AppxProvisionedPackage -Online | Remove-AppxProvisionedPackage -Online"
+		
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:reReinstall
+pause
+Echo. Tentando Reintalar Apps
+	powershell -command "Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)AppXManifest.xml”}"
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicioRemoveApps
+
+:backInicio
+timeout /t 2 > nul
 goto:inicio
 rem == REPARO WINDOWS ==
 :op11
@@ -1093,6 +1153,7 @@ echo.=====================================================================
 rem = ERRO NOT FOUND ===========================================================
 :erro404
 cls
+mode con:cols=71 lines=10
 color 03
 echo ========================================================================
 echo            * Opcao Invalida! Escolha outra opcao do menu *
@@ -1159,27 +1220,33 @@ rem == Impressora Serviço ==
 
 :InicioImpressora
 cls
+mode con:cols=71 lines=10
 @title SERVICO DE IMPRESSORA WINDOWS v1.0
 echo.=====================================================================
-echo.    1 - Forca ativacao Spooler Impressora 
-echo.    2 - Forca parada Spooler Impressora
-echo.    3 - Forca parada e restart Spooler Impressora
+echo.    1 - Forca ativar servico Spooler Impressora 
+echo.    2 - Forca parada servico Spooler Impressora
+echo.    3 - Forca parada e restart servico Spooler Impressora
+echo.    4 - Forca Limpeza fila de impressao do Windows
 echo.=====================================================================
-echo. B - Voltar ao menu inicial =========================================
+echo. S - Sair ===========================================================
 echo.=====================================================================
 	set /p Spooler_Impressoras= ::
 	if "%Spooler_Impressoras%" equ "1" (goto:SpoolerImpressora1)
 	if "%Spooler_Impressoras%" equ "2" (goto:SpoolerImpressora2)
 	if "%Spooler_Impressoras%" equ "3" (goto:SpoolerImpressora3)
+	if "%Spooler_Impressoras%" equ "4" (goto:SpoolerImpressora4)
 
-	if "%Spooler_Impressoras%" equ "b" (goto:Spoolerback)
-	if "%Spooler_Impressoras%" equ "B" (goto:Spoolerback)
+	if "%Spooler_Impressoras%" equ "s" (goto:Spoolerback)
+	if "%Spooler_Impressoras%" equ "S" (goto:Spoolerback)
+	if "%Spooler_Impressoras%" equ "sair" (goto:Spoolerback)
+	if "%Spooler_Impressoras%" equ "Sair" (goto:Spoolerback)
 	if "%Spooler_Impressoras%" GEQ "aa" (goto:erro404)
 	if "%Spooler_Impressoras%" GEQ "AA" (goto:erro404)
 
-rem = ERRO NOT FOUND ===========================================================
+rem = ERRO ==================================================================
 :erro404
 cls
+mode con:cols=71 lines=10
 color 03
 echo ========================================================================
 echo            * Opcao Invalida! Escolha outra opcao do menu *
@@ -1193,14 +1260,14 @@ goto:InicioImpressora
 		sc config Spooler start=auto
 		net start Spooler
 	echo Retornando ao menu inicial...
-	timeout /t 2 > nul
+	timeout /t 1 > nul
 	goto:InicioImpressora
 
 	:SpoolerImpressora2
 		sc config Spooler start=disabled
 		net stop Spooler
 	echo Retornando ao menu inicial...
-	timeout /t 2 > nul
+	timeout /t 1 > nul
 	goto:InicioImpressora
 	
 	:SpoolerImpressora3
@@ -1210,7 +1277,17 @@ goto:InicioImpressora
 		net start Spooler
 	pause
 	echo Retornando ao menu inicial...
-	timeout /t 2 > nul
+	timeout /t 1 > nul
+	goto:InicioImpressora
+	
+	:SpoolerImpressora4
+		net stop spooler
+		del /f /s %systemroot%\system32\spool\PRINTERS\*.SHD
+		del /f /s %systemroot%\system32\spool\PRINTERS\*.SPL
+		net start spooler
+	pause
+	echo Retornando ao menu inicial...
+	timeout /t 1 > nul
 	goto:InicioImpressora
 	
 :Spoolerback
@@ -1243,15 +1320,9 @@ rem == Clear diario ==
 	rem taskkill /F /IM ".exe"
 		taskkill /F /IM "ccleaner64.exe"
 		taskkill /F /IM "ccleaner.exe"
-		taskkill /F /IM "AnyDesk.exe"
 		taskkill /F /IM "ctfmon.exe"
-		taskkill /F /IM "TeamViewer.exe"
-		taskkill /F /IM "TeamViewer_Service.exe"
-		taskkill /F /IM "tv_x32.exe"
-		taskkill /F /IM "tv_x64.exe"
 		taskkill /F /IM "CareScan.exe"
 		taskkill /F /IM "DriverBooster.exe"
-		taskkill /F /IM "SearchIndexer.exe"
 		taskkill /F /IM "msedge.exe"
 		taskkill /F /IM "vivaldi.exe"
 		taskkill /F /IM "firefox.exe"
@@ -1259,7 +1330,6 @@ rem == Clear diario ==
 		taskkill /F /IM "brave.exe"
 		taskkill /F /IM "spotify.exe"
 		taskkill /F /IM "Steam.exe"
-		taskkill /F /IM "openvpn-gui.exe"
 		taskkill /F /IM "steamwebhelper.exe"
 		taskkill /F /IM "steamwebhelper.exe"
 		taskkill /F /IM "HD-Player.exe"
@@ -1314,36 +1384,37 @@ rem == Clear diario ==
 		rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Windows\INetCache\
 	
 	REM ******************** EDGE ********************
-	echo.
+	echo. Limpando navegadores...
+	timeout /t 2 > nul
 		taskkill /F /IM "msedge.exe"		
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Cache\f*.
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Cache\index.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\GrShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\ShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Cache\f*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Cache\index. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\GrShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\ShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\Default\Storage\ext\ > nul
 		 
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Cache\f*.
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Cache\index.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Cache\f*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Cache\index. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 1"\Storage\ext\ > nul
 			
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Cache\f*.
-			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Cache\index.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Cache\f*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Cache\index. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Microsoft\Edge\"User Data"\"Profile 2"\Storage\ext\ > nul
 		
 	
 	REM ******************** FIREFOX ********************
@@ -1351,104 +1422,177 @@ rem == Clear diario ==
 		REM define qual é a pasta Profile do usuário e apaga os arquivos temporários dali
 			set parentfolder=C:\Users\%USERNAME%\AppData\Local\Mozilla\Firefox\Profiles\
 			for /f "tokens=*" %%a in ('"dir /b "%parentfolder%"|findstr ".*\.default-release""') do set folder=%%a
-			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\cache2\entries\*.
-			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\startupCache\*.bin
-			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\startupCache\*.lz*
-			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\cache2\index*.*
-			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\startupCache\*.little
-			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\cache2\*.log /s /q
+			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\cache2\entries\*. > nul
+			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\startupCache\*.bin > nul
+			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\startupCache\*.lz* > nul
+			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\cache2\index*.* > nul
+			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\startupCache\*.little > nul
+			del C:\Users\%USERNAME%\AppData\local\Mozilla\Firefox\Profiles\%folder%\cache2\*.log /s /q > nul
 	
 	REM ******************** CHROME ********************
 		taskkill /F /IM "chrome.exe"
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Cache\f*.
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Cache\index.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\GrShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\ShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Cache\f*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Cache\index. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\GrShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\ShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\Default\Storage\ext\ > nul
 		
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\Cache\f*.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\Cache\f*. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 1"\Storage\ext\ > nul
 		 
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\Cache\f*.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\Cache\f*. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Google\Chrome\"User Data"\"Profile 2"\Storage\ext\ > nul
 		
 	REM ******************** VIVALDI ********************
 		taskkill /F /IM "vivaldi.exe"
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Cache\f*.
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Cache\index.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\GrShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\ShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Cache\f*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Cache\index. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\GrShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\ShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\Default\Storage\ext\ > nul
 			
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\Cache\f*.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\Cache\f*. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 1"\Storage\ext\ > nul
 			
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\Cache\f*.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\Cache\f*. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\Vivaldi\"User Data"\"Profile 2"\Storage\ext\ > nul
 	
 	REM ******************** BRAVE ********************
 		taskkill /F /IM "brave.exe"
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Cache\f*.
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Cache\index.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\GrShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\ShaderCache\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Cache\f*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Cache\index. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\GrShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\ShaderCache\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\Default\Storage\ext\ > nul
 	
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\Cache\f*.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\Cache\f*. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 1"\Storage\ext\ > nul
 			
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\Cache\data*.
-			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\Cache\f*.
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\"Service Worker"\Database\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\GPUCache\
-			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\Storage\ext\
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\Cache\data*. > nul
+			del C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\Cache\f*. > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\"Service Worker"\Database\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\"Service Worker"\CacheStorage\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\"Service Worker"\ScriptCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\GPUCache\ > nul
+			rmdir /q /s C:\Users\%USERNAME%\AppData\Local\BraveSoftware\Brave-Browser\"User Data"\"Profile 2"\Storage\ext\ > nul
 	cls
 echo Retornando ao menu inicial...
 timeout /t 2 > nul
 goto:inicio
 
+rem == Alterar / remover senha ou informacao de usuario windows 7/8.1/10 ==
+:op15
+
+:Iniciouserpasswd
+SET r_opc_rWindows=
+SET input_opc_rWindows=
+cls
+@title Alterar / Remover senha ou informacao de usuario windows 7/8.1/10
+echo.=====================================================================
+echo.    1 - Alterar informacao ou mudar senha de usuario.
+echo.    2 - Esqueci a senha do meu usuario.
+echo.=====================================================================
+echo.== B - Voltar ao menu inicial                                      ==
+echo.=====================================================================
+	set /p r_opc_rWindows= ::
+	if "%r_opc_rWindows%" equ "1" (goto:userpasswd1)
+	if "%r_opc_rWindows%" equ "2" (goto:userpasswd2)
+	if "%r_opc_rWindows%" equ "3" (goto:userpasswd3)
+	if "%r_opc_rWindows%" equ "4" (goto:userpasswd4)
+
+	if "%r_opc_rWindows%" equ "b" (goto:back)
+	if "%r_opc_rWindows%" equ "B" (goto:back)
+	if "%r_opc_rWindows%" GEQ "aa" (goto:erro404)
+	if "%r_opc_rWindows%" GEQ "AA" (goto:erro404)
+
+rem = ERRO NOT FOUND ===========================================================
+:erro404
+cls
+color 03
+echo ========================================================================
+echo            * Opcao Invalida! Escolha outra opcao do menu *
+echo ========================================================================
+echo.
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:Iniciouserpasswd
+
+rem -- Alterar info user --
+:userpasswd1
+cls
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:Iniciouserpasswd
+
+rem -- Remover senha user --
+:userpasswd2
+cls
+	echo. Primeiro voce precisa reiniciar o equipamento, e BOOTA com a media de instalacao do windows referente a sua versao
+	echo. de preferencia.
+	echo. Em sequencia Precione SHIFT mais F10.
+	echo. E rode o script Novamente...
+	echo. Se voce ja fez isso, precione qualquer tecla para prosseguir.
+	pause
+	cls
+		timeout /t 2 > nul
+	echo Iniciando backup de alguns arquivos do sistema que precisarao ser alterados...
+		copy C:\Windows\System32\cmd.exe C:\
+		copy C:\Windows\System32\sethc.exe C:\
+	echo. Iniciando modificacao dos arquivos...
+		C:\
+		cd Windows\System32
+		ren sethc.exe sethc_BKP.exe
+		ren cmd.exe sethc.exe
+		copy C:\cmd.exe C:\Windows\System32\
+		
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:Iniciouserpasswd
+
+echo Retornando ao menu inicial...
+timeout /t 2 > nul
+goto:inicio
 
 rem ======================= Author ================================
 :Author
@@ -1460,8 +1604,6 @@ cls
 	echo.   Author: Ichi Sawatari
 	echo.   Discord: Tyago Ichi#3797
 	echo.   Github: https://github.com/IchiSawatari/Windows-Help-suport
-	echo. ==================================================================
-	echo.   last update: 11/03/2021
 	echo. ==================================================================
 	echo.
 
